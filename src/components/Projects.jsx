@@ -1,4 +1,5 @@
 import BackendApiPlatform from "./projects/backend-api-platform/BackendApiPlatform.jsx";
+import CumminsSoOptimizer from "./projects/cummins-so-optimizer/CumminsSoOptimizer.jsx";
 import CppVideoEditor from "./projects/cpp-video-editor/CppVideoEditor.jsx";
 import MotionAmplification from "./projects/motion-amplification/MotionAmplification.jsx";
 import PasswordlessRiskEngine from "./projects/passwordless-risk-engine/PasswordlessRiskEngine.jsx";
@@ -10,6 +11,7 @@ export default function Projects() {
     <section className="flex flex-col gap-10">
       <MotionAmplification />
       <PasswordlessRiskEngine />
+      <CumminsSoOptimizer />
       <WindowsTextEditor />
       <RealTimeChatSystem />
       <CppVideoEditor />
