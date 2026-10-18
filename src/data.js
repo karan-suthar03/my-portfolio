@@ -1,0 +1,137 @@
+import videogammetry from "./assets/projects/videogammetry.png";
+import motionAmplification from "./assets/projects/motion-amplification.gif";
+import soOptimizer from "./assets/projects/so-optimizer.png";
+import textEditor from "./assets/projects/text-editor.gif";
+
+export const profile = {
+  name: "Karan Suthar",
+  role: "Software Engineer · Data Engineer",
+  location: "Pune, India",
+  about:
+    "I build data platforms and backend systems at Synthesys Solutions and Brilliqs, and in my own time I write performance-heavy software from scratch: computer vision pipelines, GPU simulations, renderers and native editors. I like understanding a system down to the metal before reaching for a library.",
+  links: [
+    { label: "GitHub", href: "https://github.com/karan-suthar03" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/karan-suthar-0a35b4265" },
+    { label: "Email", href: "mailto:karan.suthar.lakha@gmail.com" },
+  ],
+};
+
+export const experience = [
+  {
+    when: "Sep 2026 – Now",
+    title: "Data Engineer",
+    org: "Brilliqs",
+    note: "The data and AI division of Synthesys",
+    points: [
+      "Build and maintain data pipelines and platforms on Snowflake for client projects.",
+      "Built an event-driven ingestion pipeline on AWS (S3 → Lambda) that normalises messy CSV uploads into JSON Lines.",
+      "Supply dashboards, analytics and AI work with reliable, well-modelled data.",
+    ],
+  },
+  {
+    when: "Jul 2026 – Now",
+    title: "Software Engineer",
+    org: "Synthesys Solutions",
+    points: [
+      "B2B field-sales CRM with live location tracking: Go backend, React + TypeScript web app, Android app.",
+      "E-certificate verification service using FastAPI, OpenCV, ONNX models and Azure OCR on PostgreSQL.",
+      "Leave-management system in Node.js, Express, Prisma and PostgreSQL, shipped as Docker containers.",
+    ],
+  },
+  {
+    when: "Apr – Jun 2026",
+    title: "Software Engineer Intern",
+    org: "Synthesys Solutions",
+    points: ["Feature development, debugging and improvements across several client projects; moved to full time."],
+  },
+];
+
+export const featured = [
+  {
+    when: "Oct 2026",
+    title: "Videogammetry",
+    tagline: "Video in, 3D point cloud out, written from scratch in C++.",
+    image: videogammetry,
+    imageAlt: "Point cloud and camera path reconstructed from a video",
+    dark: true,
+    tech: ["C++20", "ORB features, PnP, bundle adjustment", "Vulkan compute (optional GPU)", "FFmpeg · Win32 · Android"],
+    stats: ["129 fps on a 708-frame video", "0 lost frames", "Camera path within 0.05% of COLMAP"],
+    description:
+      "A structure-from-motion pipeline that recovers the camera path and a coloured point cloud from ordinary video. Feature detection, two-view initialisation, incremental pose estimation and bundle adjustment are my own code; COLMAP and ORB-SLAM3 serve only as benchmarks. Bundle adjustment runs on its own mapping thread, a background plane-sweep stage densifies the cloud, and a live viewer draws the map as the video plays.",
+  },
+  {
+    when: "Feb 2026",
+    title: "Video Motion Amplification Studio",
+    tagline: "Makes invisible machine vibrations visible.",
+    image: motionAmplification,
+    imageAlt: "Amplified motion in a video of machinery",
+    tech: ["Python", "PySide6 + PyQtGraph", "NumPy + SciPy (FFT, band-pass)", "OpenCV"],
+    repo: "https://github.com/karan-suthar03/motion-amplification",
+    description:
+      "An interactive desktop tool that magnifies subtle motion in video with Eulerian-style signal processing, for spotting faults and micro-vibrations in machinery. Pixel-level exploration, live FFT inspection, tunable frequency bands and a threaded render pipeline that exports amplified MP4.",
+  },
+  {
+    when: "Feb 2026",
+    title: "Passwordless Risk Engine",
+    tagline: "Passkey login with device-aware risk scoring. Built in 24 hours.",
+    tech: ["Node.js + Express", "WebAuthn / passkeys", "Browser + backend npm SDKs", "Device fingerprinting"],
+    repo: "https://github.com/karan-suthar03/password-less-authentication-gitIgnore",
+    description:
+      "Passwordless authentication with trust decisions based on the device. Two reusable npm SDKs (browser and backend), risk-assessment endpoints, and approval-based enrolment of new devices using platform, timezone, language and touch capability. Sign-in uses WebAuthn, so Windows Hello, Touch ID and Face ID do the work.",
+  },
+  {
+    when: "Jan 2026",
+    title: "Manufacturing SO Optimizer",
+    tagline: "30–60× faster sales-order analysis for two manufacturing departments.",
+    image: soOptimizer,
+    imageAlt: "SO Optimizer desktop app",
+    tech: ["Python + Tkinter", "pandas + OpenPyXL", "CSV/XLSX ingestion", "PyInstaller EXE"],
+    stats: ["File load: 60–120 s → 1–2 s", "Search/compare: 20–30 s → under 1 s"],
+    description:
+      "A desktop app that replaced manual spreadsheet work in two Excel-heavy departments. Rolled out to both as a production Windows EXE. Confidential, so no public repository.",
+  },
+  {
+    when: "Jan 2026",
+    title: "Native Windows Text Editor",
+    tagline: "A text editor with no GUI framework, straight on Win32.",
+    image: textEditor,
+    imageAlt: "Text editor running on Windows",
+    tech: ["C++17", "Win32 API", "Gap buffer", "GDI rendering"],
+    repo: "https://github.com/karan-suthar03/textEditor",
+    description:
+      "Built from raw Windows messages up. A gap buffer gives O(1) amortised local inserts and deletes, and a custom GDI renderer handles line tracking and viewport scrolling.",
+  },
+];
+
+export const moreProjects = [
+  { when: "2026", title: "J-1 POS System", text: "Cross-platform café POS with admin and counter apps, Bluetooth receipt printing, offline-first sync.", tech: "Java · Spring Boot · React", repo: "https://github.com/karan-suthar03/pos-system" },
+  { when: "2026", title: "Chess Engine", text: "Move generation, evaluation and search, written to learn systems programming in Rust.", tech: "Rust", repo: "https://github.com/karan-suthar03/chess-rust" },
+  { when: "2025", title: "1M+ Particle Simulation", text: "GPU-accelerated physics and rendering of over a million particles in real time.", tech: "WebGL · GLSL", repo: "https://github.com/karan-suthar03/particle-simulation" },
+  { when: "2025", title: "7 GB Image Viewer", text: "Google-Maps-style level-of-detail viewer for a 7 GB image, served from a zero-cost tile pipeline.", tech: "JavaScript · Python · Cloudflare R2" },
+  { when: "2025", title: "Serverless Chat", text: "Real-time chat with no servers to run: Lambda for compute, API Gateway for routing, S3 for hosting.", tech: "AWS Lambda · API Gateway · S3" },
+  { when: "2025", title: "SIH RAG Engine", text: "Led the team building ingestion, embeddings, vector search and a contextual answer pipeline.", tech: "Python · FastAPI · Qdrant" },
+  { when: "2025", title: "2 Bandhu Chai", text: "Production website with SEO, accessibility and fast loads from Cloudflare's CDN.", tech: "HTML · CSS · JS · Cloudflare" },
+  { when: "2024", title: "OpenGL Ray Tracer", text: "GPU ray tracing with compute shaders, reflections and physically inspired lighting.", tech: "C++ · OpenGL · GLSL" },
+  { when: "2024", title: "Gyroscope Steering for GTA V", text: "Phone gyroscope mapped to in-game steering over Wi-Fi.", tech: "Python · Java · PyQt5" },
+  { when: "2023", title: "Neural Network Library", text: "Modular neural networks with custom layers and activations, no ML framework.", tech: "JavaScript" },
+];
+
+export const hackathons = [
+  { name: "Navonmesh Hackathon", role: "Team lead", result: "19th of 500+ teams" },
+  { name: "Smart India Hackathon", role: "Team lead", result: "RAG system for real-world use" },
+  { name: "ISRO Hackathon", role: "Team lead", result: "Space-tech prototyping" },
+];
+
+export const skills = [
+  { label: "Languages", value: "C++, Python, Go, TypeScript, JavaScript, Java, Rust, SQL" },
+  { label: "Backend", value: "Node.js, Express, FastAPI, Spring Boot, PostgreSQL, Prisma, MongoDB, REST" },
+  { label: "Data & AI", value: "Snowflake, pandas, NumPy, OpenCV, ONNX, RAG, Qdrant" },
+  { label: "Graphics", value: "OpenGL, GLSL, WebGL, Vulkan compute, ray tracing" },
+  { label: "Cloud", value: "AWS (Lambda, S3, API Gateway, EC2), Cloudflare (R2, Pages), Docker" },
+  { label: "Frontend", value: "React, TailwindCSS" },
+];
+
+export const education = [
+  { when: "2025 – Now", degree: "Master of Computer Applications (MCA)", school: "MES' IMCC, Savitribai Phule Pune University" },
+  { when: "2021 – 2025", degree: "Bachelor of Computer Applications (BBA-CA)", school: "Savitribai Phule Pune University · CGPA 8.4" },
+];
