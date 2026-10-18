@@ -26,7 +26,7 @@ export const experience = [
     when: "Sep 2026 – Now",
     title: "Data Engineer",
     org: "Brilliqs",
-    stack: "Snowflake · SQL · Python · pandas · AWS Lambda · S3 · Streamlit",
+    stack: "Snowflake · SQL · Python · pandas · AWS",
   },
   {
     when: "Jul 2026 – Now",
