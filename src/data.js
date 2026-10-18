@@ -1,4 +1,5 @@
-import videogammetry from "./assets/projects/videogammetry.png";
+import videogammetryVideo from "./assets/projects/videogammetry.mp4";
+import videogammetryPoster from "./assets/projects/videogammetry-poster.jpg";
 import motionAmplification from "./assets/projects/motion-amplification.gif";
 import soOptimizer from "./assets/projects/so-optimizer.png";
 import textEditor from "./assets/projects/text-editor.gif";
@@ -55,8 +56,9 @@ export const featured = [
     when: "Oct 2026",
     title: "Videogammetry",
     tagline: "Video in, 3D point cloud out, written from scratch in C++.",
-    image: videogammetry,
-    imageAlt: "Point cloud and camera path reconstructed from a video",
+    video: videogammetryVideo,
+    image: videogammetryPoster,
+    imageAlt: "Live viewer building a point cloud and camera path from a video",
     dark: true,
     tech: ["C++20", "ORB features, PnP, bundle adjustment", "Vulkan compute (optional GPU)", "FFmpeg · Win32 · Android"],
     stats: ["129 fps on a 708-frame video", "0 lost frames", "Camera path within 0.05% of COLMAP"],
@@ -106,7 +108,7 @@ export const featured = [
       "Built from raw Windows messages up. A gap buffer gives O(1) amortised local inserts and deletes, and a custom GDI renderer handles line tracking and viewport scrolling.",
   },
   {
-    when: "2025",
+    when: "Oct 2025",
     title: "1M+ Particle Simulation",
     tagline: "Over a million particles, simulated and drawn on the GPU in real time.",
     video: particlesVideo,
@@ -120,7 +122,7 @@ export const featured = [
       "Physics and rendering both run in shaders, so the CPU never touches individual particles. Particles flock into any text you type, and the particle count can be changed live, up past a million.",
   },
   {
-    when: "2025",
+    when: "Jul 2025",
     title: "7 GB Image Viewer",
     tagline: "Google-Maps-style zooming into a 7 GB image, at zero hosting cost.",
     video: tileViewerVideo,
@@ -135,8 +137,8 @@ export const featured = [
 ];
 
 export const moreProjects = [
-  { when: "2026", title: "J-1 POS System", text: "Cross-platform café POS with admin and counter apps, Bluetooth receipt printing, offline-first sync.", tech: "Java · Spring Boot · React", repo: "https://github.com/karan-suthar03/pos-system" },
-  { when: "2026", title: "Chess Engine", text: "Move generation, evaluation and search, written to learn systems programming in Rust.", tech: "Rust", repo: "https://github.com/karan-suthar03/chess-rust" },
+  { when: "Apr 2026", title: "Chess Engine", text: "Move generation, evaluation and search, written to learn systems programming in Rust.", tech: "Rust", repo: "https://github.com/karan-suthar03/chess-rust" },
+  { when: "Mar 2026", title: "J-1 POS System", text: "Cross-platform café POS with admin and counter apps, Bluetooth receipt printing, offline-first sync.", tech: "Java · Spring Boot · React", repo: "https://github.com/karan-suthar03/pos-system" },
   { when: "2025", title: "Serverless Chat", text: "Real-time chat with no servers to run: Lambda for compute, API Gateway for routing, S3 for hosting.", tech: "AWS Lambda · API Gateway · S3" },
   { when: "2025", title: "SIH RAG Engine", text: "Led the team building ingestion, embeddings, vector search and a contextual answer pipeline.", tech: "Python · FastAPI · Qdrant" },
   { when: "2025", title: "2 Bandhu Chai", text: "Production website with SEO, accessibility and fast loads from Cloudflare's CDN.", tech: "HTML · CSS · JS · Cloudflare" },
