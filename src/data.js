@@ -2,6 +2,10 @@ import videogammetry from "./assets/projects/videogammetry.png";
 import motionAmplification from "./assets/projects/motion-amplification.gif";
 import soOptimizer from "./assets/projects/so-optimizer.png";
 import textEditor from "./assets/projects/text-editor.gif";
+import particlesVideo from "./assets/projects/particles.mp4";
+import particlesPoster from "./assets/projects/particles-poster.jpg";
+import tileViewerVideo from "./assets/projects/tile-viewer.mp4";
+import tileViewerPoster from "./assets/projects/tile-viewer-poster.jpg";
 
 export const profile = {
   name: "Karan Suthar",
@@ -101,13 +105,38 @@ export const featured = [
     description:
       "Built from raw Windows messages up. A gap buffer gives O(1) amortised local inserts and deletes, and a custom GDI renderer handles line tracking and viewport scrolling.",
   },
+  {
+    when: "2025",
+    title: "1M+ Particle Simulation",
+    tagline: "Over a million particles, simulated and drawn on the GPU in real time.",
+    video: particlesVideo,
+    image: particlesPoster,
+    imageAlt: "Particles forming the word KARAN",
+    dark: true,
+    tech: ["WebGL2", "GLSL compute-style shaders", "JavaScript"],
+    repo: "https://github.com/karan-suthar03/particle-simulation",
+    demo: "https://karan-suthar03.github.io/particle-simulation/",
+    description:
+      "Physics and rendering both run in shaders, so the CPU never touches individual particles. Particles flock into any text you type, and the particle count can be changed live, up past a million.",
+  },
+  {
+    when: "2025",
+    title: "7 GB Image Viewer",
+    tagline: "Google-Maps-style zooming into a 7 GB image, at zero hosting cost.",
+    video: tileViewerVideo,
+    image: tileViewerPoster,
+    imageAlt: "Zooming into a giant photo mosaic",
+    tech: ["JavaScript + p5.js", "Python tiling pipeline", "Cloudflare R2 + CDN"],
+    repo: "https://github.com/karan-suthar03/tilemap-page",
+    demo: "https://karan-suthar03.github.io/tilemap-page/",
+    description:
+      "A level-of-detail viewer for a 7 GB photo mosaic. A Python pipeline cuts the image into tile pyramids, Cloudflare R2 and its CDN serve them for free, and the viewer streams only the tiles on screen at the current zoom level, with a minimap to keep your place.",
+  },
 ];
 
 export const moreProjects = [
   { when: "2026", title: "J-1 POS System", text: "Cross-platform café POS with admin and counter apps, Bluetooth receipt printing, offline-first sync.", tech: "Java · Spring Boot · React", repo: "https://github.com/karan-suthar03/pos-system" },
   { when: "2026", title: "Chess Engine", text: "Move generation, evaluation and search, written to learn systems programming in Rust.", tech: "Rust", repo: "https://github.com/karan-suthar03/chess-rust" },
-  { when: "2025", title: "1M+ Particle Simulation", text: "GPU-accelerated physics and rendering of over a million particles in real time.", tech: "WebGL · GLSL", repo: "https://github.com/karan-suthar03/particle-simulation" },
-  { when: "2025", title: "7 GB Image Viewer", text: "Google-Maps-style level-of-detail viewer for a 7 GB image, served from a zero-cost tile pipeline.", tech: "JavaScript · Python · Cloudflare R2" },
   { when: "2025", title: "Serverless Chat", text: "Real-time chat with no servers to run: Lambda for compute, API Gateway for routing, S3 for hosting.", tech: "AWS Lambda · API Gateway · S3" },
   { when: "2025", title: "SIH RAG Engine", text: "Led the team building ingestion, embeddings, vector search and a contextual answer pipeline.", tech: "Python · FastAPI · Qdrant" },
   { when: "2025", title: "2 Bandhu Chai", text: "Production website with SEO, accessibility and fast loads from Cloudflare's CDN.", tech: "HTML · CSS · JS · Cloudflare" },

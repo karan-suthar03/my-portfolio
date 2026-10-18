@@ -14,7 +14,21 @@ function Preview({ project }) {
           project.dark ? "bg-neutral-900" : "bg-neutral-100 dark:bg-neutral-900"
         }`}
       >
-        <img src={project.image} alt={project.imageAlt} loading="lazy" decoding="async" className="w-full h-full object-cover" />
+        {project.video ? (
+          <video
+            src={project.video}
+            poster={project.image}
+            aria-label={project.imageAlt}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <img src={project.image} alt={project.imageAlt} loading="lazy" decoding="async" className="w-full h-full object-cover" />
+        )}
       </div>
     );
   }
@@ -53,17 +67,29 @@ export default function Featured() {
                   ))}
                 </div>
               )}
-              {project.repo && (
+              {(project.repo || project.demo) && (
                 <div className="flex flex-col mt-auto">
-                  <Label>Repository</Label>
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline decoration-neutral-300 dark:decoration-neutral-600 underline-offset-2 hover:decoration-current break-all"
-                  >
-                    {project.repo.replace("https://", "")}
-                  </a>
+                  <Label>Links</Label>
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-neutral-300 dark:decoration-neutral-600 underline-offset-2 hover:decoration-current w-fit"
+                    >
+                      Live demo
+                    </a>
+                  )}
+                  {project.repo && (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-neutral-300 dark:decoration-neutral-600 underline-offset-2 hover:decoration-current break-all"
+                    >
+                      {project.repo.replace("https://", "")}
+                    </a>
+                  )}
                 </div>
               )}
             </div>
