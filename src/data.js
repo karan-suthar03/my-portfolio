@@ -26,28 +26,19 @@ export const experience = [
     when: "Sep 2026 – Now",
     title: "Data Engineer",
     org: "Brilliqs",
-    note: "The data and AI division of Synthesys",
-    points: [
-      "Build and maintain data pipelines and platforms on Snowflake for client projects.",
-      "Built an event-driven ingestion pipeline on AWS (S3 → Lambda) that normalises messy CSV uploads into JSON Lines.",
-      "Supply dashboards, analytics and AI work with reliable, well-modelled data.",
-    ],
+    stack: "Snowflake · SQL · Python · pandas · AWS Lambda · S3 · Streamlit",
   },
   {
     when: "Jul 2026 – Now",
     title: "Software Engineer",
     org: "Synthesys Solutions",
-    points: [
-      "B2B field-sales CRM with live location tracking: Go backend, React + TypeScript web app, Android app.",
-      "E-certificate verification service using FastAPI, OpenCV, ONNX models and Azure OCR on PostgreSQL.",
-      "Leave-management system in Node.js, Express, Prisma and PostgreSQL, shipped as Docker containers.",
-    ],
+    stack:
+      "Go · Python · FastAPI · TypeScript · React · Node.js · Express · PostgreSQL · Prisma · Docker · OpenCV · ONNX · Azure OCR · Android",
   },
   {
     when: "Apr – Jun 2026",
     title: "Software Engineer Intern",
     org: "Synthesys Solutions",
-    points: ["Feature development, debugging and improvements across several client projects; moved to full time."],
   },
 ];
 
