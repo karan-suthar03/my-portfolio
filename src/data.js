@@ -131,12 +131,12 @@ export const featured = [
 export const moreProjects = [
   { when: "Apr 2026", title: "Chess Engine", text: "Move generation, evaluation and search, written to learn systems programming in Rust.", tech: "Rust", repo: "https://github.com/karan-suthar03/chess-rust" },
   { when: "Mar 2026", title: "J-1 POS System", text: "Cross-platform café POS with admin and counter apps, Bluetooth receipt printing, offline-first sync.", tech: "Java · Spring Boot · React", repo: "https://github.com/karan-suthar03/pos-system" },
-  { when: "2025", title: "Serverless Chat", text: "Real-time chat with no servers to run: Lambda for compute, API Gateway for routing, S3 for hosting.", tech: "AWS Lambda · API Gateway · S3" },
-  { when: "2025", title: "SIH RAG Engine", text: "Led the team building ingestion, embeddings, vector search and a contextual answer pipeline.", tech: "Python · FastAPI · Qdrant" },
-  { when: "2025", title: "2 Bandhu Chai", text: "Production website with SEO, accessibility and fast loads from Cloudflare's CDN.", tech: "HTML · CSS · JS · Cloudflare" },
-  { when: "2024", title: "OpenGL Ray Tracer", text: "GPU ray tracing with compute shaders, reflections and physically inspired lighting.", tech: "C++ · OpenGL · GLSL" },
+  { when: "Sep 2025", title: "SIH RAG Engine", text: "Led the team building ingestion, embeddings, vector search and a contextual answer pipeline.", tech: "Python · FastAPI · Qdrant" },
+  { when: "Sep 2025", title: "OpenGL Ray Tracer", text: "GPU ray tracing with compute shaders, reflections and physically inspired lighting.", tech: "C++ · OpenGL · GLSL", repo: "https://github.com/karan-suthar03/ray-tracing-on-gpu" },
+  { when: "Aug 2025", title: "Serverless Chat", text: "Real-time chat with no servers to run: Lambda for compute, API Gateway for routing, S3 for hosting.", tech: "AWS Lambda · API Gateway · S3", repo: "https://github.com/karan-suthar03/serverless-chat-app" },
+  { when: "Jul 2025", title: "2 Bandhu Chai", text: "Production website with SEO, accessibility and fast loads from Cloudflare's CDN.", tech: "HTML · CSS · JS · Cloudflare", repo: "https://github.com/karan-suthar03/2-bandhu-chai" },
   { when: "2024", title: "Gyroscope Steering for GTA V", text: "Phone gyroscope mapped to in-game steering over Wi-Fi.", tech: "Python · Java · PyQt5" },
-  { when: "2023", title: "Neural Network Library", text: "Modular neural networks with custom layers and activations, no ML framework.", tech: "JavaScript" },
+  { when: "Mar 2024", title: "Neural Network Library", text: "Modular neural networks with custom layers and activations, no ML framework.", tech: "JavaScript", repo: "https://github.com/karan-suthar03/neural-network-from-scratch" },
 ];
 
 export const hackathons = [
