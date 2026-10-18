@@ -67,9 +67,17 @@ export default function Featured() {
                   ))}
                 </div>
               )}
-              {(project.repo || project.demo) && (
+              {(project.repo || project.demo || project.writeup) && (
                 <div className="flex flex-col mt-auto">
                   <Label>Links</Label>
+                  {project.writeup && (
+                    <a
+                      href={project.writeup}
+                      className="underline decoration-neutral-300 dark:decoration-neutral-600 underline-offset-2 hover:decoration-current w-fit"
+                    >
+                      Read the write-up
+                    </a>
+                  )}
                   {project.demo && (
                     <a
                       href={project.demo}

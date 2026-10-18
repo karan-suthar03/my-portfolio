@@ -1,11 +1,8 @@
-import videogammetryVideo from "./assets/projects/videogammetry.mp4";
+import { MEDIA } from "./media.js";
 import videogammetryPoster from "./assets/projects/videogammetry-poster.jpg";
 import motionAmplification from "./assets/projects/motion-amplification.gif";
 import soOptimizer from "./assets/projects/so-optimizer.png";
-import textEditor from "./assets/projects/text-editor.gif";
-import particlesVideo from "./assets/projects/particles.mp4";
 import particlesPoster from "./assets/projects/particles-poster.jpg";
-import tileViewerVideo from "./assets/projects/tile-viewer.mp4";
 import tileViewerPoster from "./assets/projects/tile-viewer-poster.jpg";
 
 export const profile = {
@@ -47,13 +44,14 @@ export const featured = [
     when: "Oct 2026",
     title: "Videogammetry",
     tagline: "Video in, 3D point cloud out, written from scratch in C++.",
-    video: videogammetryVideo,
+    video: `${MEDIA}/projects/videogammetry.mp4`,
     image: videogammetryPoster,
     imageAlt: "Live viewer building a point cloud and camera path from a video",
     dark: true,
     tech: ["C++20", "ORB features, PnP, bundle adjustment", "Vulkan compute (optional GPU)", "FFmpeg · Win32 · Android"],
     stats: ["129 fps on a 708-frame video", "0 lost frames", "Camera path within 0.05% of COLMAP"],
     repo: "https://github.com/karan-suthar03/videogammetry",
+    writeup: "/writing/videogammetry/",
     description:
       "A structure-from-motion pipeline that recovers the camera path and a coloured point cloud from ordinary video. Feature detection, two-view initialisation, incremental pose estimation and bundle adjustment are my own code; COLMAP and ORB-SLAM3 serve only as benchmarks. Bundle adjustment runs on its own mapping thread, a background plane-sweep stage densifies the cloud, and a live viewer draws the map as the video plays.",
   },
@@ -92,7 +90,7 @@ export const featured = [
     when: "Jan 2026",
     title: "Native Windows Text Editor",
     tagline: "A text editor with no GUI framework, straight on Win32.",
-    image: textEditor,
+    image: `${MEDIA}/projects/text-editor.gif`,
     imageAlt: "Text editor running on Windows",
     tech: ["C++17", "Win32 API", "Gap buffer", "GDI rendering"],
     repo: "https://github.com/karan-suthar03/textEditor",
@@ -103,7 +101,7 @@ export const featured = [
     when: "Oct 2025",
     title: "1M+ Particle Simulation",
     tagline: "Over a million particles, simulated and drawn on the GPU in real time.",
-    video: particlesVideo,
+    video: `${MEDIA}/projects/particles.mp4`,
     image: particlesPoster,
     imageAlt: "Particles forming the word KARAN",
     dark: true,
@@ -117,7 +115,7 @@ export const featured = [
     when: "Jul 2025",
     title: "7 GB Image Viewer",
     tagline: "Google-Maps-style zooming into a 7 GB image, at zero hosting cost.",
-    video: tileViewerVideo,
+    video: `${MEDIA}/projects/tile-viewer.mp4`,
     image: tileViewerPoster,
     imageAlt: "Zooming into a giant photo mosaic",
     tech: ["JavaScript + p5.js", "Python tiling pipeline", "Cloudflare R2 + CDN"],
