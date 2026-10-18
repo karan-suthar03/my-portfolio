@@ -62,6 +62,7 @@ export const featured = [
     dark: true,
     tech: ["C++20", "ORB features, PnP, bundle adjustment", "Vulkan compute (optional GPU)", "FFmpeg · Win32 · Android"],
     stats: ["129 fps on a 708-frame video", "0 lost frames", "Camera path within 0.05% of COLMAP"],
+    repo: "https://github.com/karan-suthar03/videogammetry",
     description:
       "A structure-from-motion pipeline that recovers the camera path and a coloured point cloud from ordinary video. Feature detection, two-view initialisation, incremental pose estimation and bundle adjustment are my own code; COLMAP and ORB-SLAM3 serve only as benchmarks. Bundle adjustment runs on its own mapping thread, a background plane-sweep stage densifies the cloud, and a live viewer draws the map as the video plays.",
   },
