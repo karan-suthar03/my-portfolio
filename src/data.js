@@ -1,5 +1,5 @@
 import { MEDIA } from "./media.js";
-import videogammetryPoster from "./assets/projects/videogammetry-poster.jpg";
+import videogammetryPoster from "./assets/projects/videogammetry-dense-poster.jpg";
 import motionAmplification from "./assets/projects/motion-amplification.gif";
 import soOptimizer from "./assets/projects/so-optimizer.png";
 import particlesPoster from "./assets/projects/particles-poster.jpg";
@@ -44,16 +44,16 @@ export const featured = [
     when: "Oct 2026",
     title: "Videogammetry",
     tagline: "Video in, 3D point cloud out, written from scratch in C++.",
-    video: `${MEDIA}/projects/videogammetry.mp4`,
+    video: `${MEDIA}/projects/videogammetry-dense-loop.mp4`,
     image: videogammetryPoster,
-    imageAlt: "Live viewer building a point cloud and camera path from a video",
+    imageAlt: "Live viewer filling in a dense point cloud of a statue, with each depth map in the corner",
     dark: true,
     tech: ["C++20", "ORB features, PnP, bundle adjustment", "Vulkan compute (optional GPU)", "FFmpeg · Win32 · Android"],
     stats: ["129 fps on a 708-frame video", "0 lost frames", "Camera path within 0.05% of COLMAP"],
     repo: "https://github.com/karan-suthar03/videogammetry",
     writeup: "/writing/videogammetry/",
     description:
-      "A structure-from-motion pipeline that recovers the camera path and a coloured point cloud from ordinary video. Feature detection, two-view initialisation, incremental pose estimation and bundle adjustment are my own code; COLMAP and ORB-SLAM3 serve only as benchmarks. Bundle adjustment runs on its own mapping thread, a background plane-sweep stage densifies the cloud, and a live viewer draws the map as the video plays.",
+      "A structure-from-motion pipeline that recovers the camera path and a coloured point cloud from ordinary video. Feature detection, two-view initialisation, incremental pose estimation and bundle adjustment are my own code; COLMAP and ORB-SLAM3 serve only as benchmarks. Bundle adjustment runs on its own mapping thread, and a live viewer draws the map as the video plays. Once the video ends, a GPU PatchMatch stage computes a depth map for every keyframe and fuses them into a dense cloud.",
   },
   {
     when: "Feb 2026",

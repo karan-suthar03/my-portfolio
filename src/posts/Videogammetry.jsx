@@ -6,6 +6,25 @@ import m60Poster from "../assets/posts/videogammetry/m60.jpg";
 import tracking from "../assets/posts/videogammetry/tracking.jpg";
 import streetMap from "../assets/posts/videogammetry/street-map.jpg";
 import familyMap from "../assets/posts/videogammetry/family-map.jpg";
+import densePoster from "../assets/posts/videogammetry/dense/poster.jpg";
+import denseColor from "../assets/posts/videogammetry/dense/color.jpg";
+import denseSeeds from "../assets/posts/videogammetry/dense/seeds.jpg";
+import denseRound0 from "../assets/posts/videogammetry/dense/round0.jpg";
+import denseRound1 from "../assets/posts/videogammetry/dense/round1.jpg";
+import denseRound2 from "../assets/posts/videogammetry/dense/round2.jpg";
+import denseRound4 from "../assets/posts/videogammetry/dense/round4.jpg";
+import denseLevel3 from "../assets/posts/videogammetry/dense/level3.jpg";
+import denseLevel2 from "../assets/posts/videogammetry/dense/level2.jpg";
+import denseLevel1 from "../assets/posts/videogammetry/dense/level1.jpg";
+import denseLevel0 from "../assets/posts/videogammetry/dense/level0.jpg";
+import denseDepth from "../assets/posts/videogammetry/dense/depth.jpg";
+import denseNormals from "../assets/posts/videogammetry/dense/normals.jpg";
+import denseCost from "../assets/posts/videogammetry/dense/cost.jpg";
+import kf02408Color from "../assets/posts/videogammetry/dense/kf02408-color.jpg";
+import kf02408Depth from "../assets/posts/videogammetry/dense/kf02408-depth.jpg";
+import kf03822Color from "../assets/posts/videogammetry/dense/kf03822-color.jpg";
+import kf03822Depth from "../assets/posts/videogammetry/dense/kf03822-depth.jpg";
+import { DensePipeline, FusionCheck, PlaneHomography, Propagation } from "./videogammetry-diagrams.jsx";
 
 function H({ children }) {
   return <h2 className="text-xl font-medium tracking-tight mt-10">{children}</h2>;
@@ -43,8 +62,29 @@ function Figure({ src, alt, children }) {
   );
 }
 
+// Images side by side (two per row), each with a short label.
+function Grid({ items, children }) {
+  return (
+    <figure className="flex flex-col gap-2 my-2">
+      <div className="grid grid-cols-2 gap-1.5">
+        {items.map(([src, name], i) => (
+          <div key={i} className="flex flex-col gap-1">
+            <img src={src} alt={name} loading="lazy" decoding="async" className="w-full rounded-sm bg-neutral-900" />
+            <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">{name}</span>
+          </div>
+        ))}
+      </div>
+      <Caption>{children}</Caption>
+    </figure>
+  );
+}
+
+function Diagram({ children }) {
+  return <figure className="my-2 text-neutral-800 dark:text-neutral-200">{children}</figure>;
+}
+
 // Plays only while on screen, so a long page with several clips stays light.
-function Video({ src, poster, label, children }) {
+function Clip({ src, poster, label }) {
   const ref = useRef(null);
   useEffect(() => {
     const v = ref.current;
@@ -60,19 +100,25 @@ function Video({ src, poster, label, children }) {
     return () => io.disconnect();
   }, []);
   return (
+    <video
+      ref={ref}
+      src={src}
+      poster={poster}
+      muted
+      loop
+      playsInline
+      controls
+      preload="none"
+      aria-label={label}
+      className="w-full rounded-sm bg-neutral-900"
+    />
+  );
+}
+
+function Video({ src, poster, label, children }) {
+  return (
     <figure className="flex flex-col gap-2 my-2">
-      <video
-        ref={ref}
-        src={src}
-        poster={poster}
-        muted
-        loop
-        playsInline
-        controls
-        preload="none"
-        aria-label={label}
-        className="w-full rounded-sm bg-neutral-900"
-      />
+      <Clip src={src} poster={poster} label={label} />
       <Caption>{children}</Caption>
     </figure>
   );
@@ -81,6 +127,7 @@ function Video({ src, poster, label, children }) {
 const familyVideo = `${MEDIA}/posts/videogammetry/family.mp4`;
 const streetVideo = `${MEDIA}/posts/videogammetry/street.mp4`;
 const m60Video = `${MEDIA}/posts/videogammetry/m60.mp4`;
+const denseVideo = `${MEDIA}/posts/videogammetry/family-dense.mp4`;
 
 const benchmarks = [
   { name: "Street walk", frames: "708", before: "62.8", after: "129.0", ate: "0.05%", fov: "71.7° / 72.3°" },
@@ -101,9 +148,17 @@ export default function Videogammetry() {
         <h1 className="text-3xl font-medium tracking-tight leading-tight">{meta.title}</h1>
       </header>
 
+      <Video
+        src={denseVideo}
+        poster={densePoster}
+        label="Dense points filling in the Family statue keyframe by keyframe, with each depth map in the corner"
+      >
+        The Family statue as a dense point cloud, 2× speed. After the video, every keyframe gets a depth map, shown in
+        the corner (near is red, far is blue), and points appear wherever several keyframes agree.
+      </Video>
       <Video src={familyVideo} poster={familyPoster} label="A statue being reconstructed as a point cloud, seen through the camera">
-        The Family statue taking shape out of 138,000 points, seen through the moving camera, in real time, with the
-        original video in the corner.
+        The same statue taking shape out of 138,000 points while the video plays, seen through the moving camera, in
+        real time, with the original video in the corner.
       </Video>
 
       <P>
@@ -163,7 +218,10 @@ export default function Videogammetry() {
           model until everything agrees, continuously in the background.
         </li>
       </List>
-      <P>The first two frames are special, because there is no map yet. The sections below go through each stage.</P>
+      <P>
+        The first two frames are special, because there is no map yet. Once the video ends, a separate dense stage fills
+        in the surfaces between the points. The sections below go through each stage.
+      </P>
 
       <Video src={streetVideo} poster={streetPoster} label="The live viewer building a street point cloud as the video plays">
         The street video in the live viewer, real time. The map grows as the camera walks: white points are the map,
@@ -434,27 +492,181 @@ export default function Videogammetry() {
         The M60 tank from Tanks and Temples, 3× speed. The camera walks around the tank and the map closes around it.
       </Video>
 
-      <H>9. Densifying the cloud</H>
+      <H>9. The dense cloud</H>
       <P>
-        Features sit only on corners and texture, so the cloud is sparse by nature. A separate solver runs in the
-        background and fills in the surfaces between them, completely independent of tracking, at low priority. Space
-        is divided into an octree of cells. A cell is solved once enough map points fall inside it, coarse cells first
-        for a quick rough cloud, then their children, down to cells small enough to match at full image resolution.
+        Features only sit on corners and texture, so the map from tracking is sparse: about 30,000 points for the
+        Family video. That is plenty to place the camera, but you can&apos;t see the surfaces. The dense stage fills them
+        in. It works out a depth for every pixel of every keyframe, then keeps the depths that several keyframes agree
+        on. The first video in this post shows it running.
       </P>
       <P>
-        Each cell is solved by plane sweep. From a reference keyframe, every pixel in the cell is tried at a range of
-        depths. At each depth, the pixel&apos;s 5×5 patch is projected into the other keyframes that see the cell and
-        compared by normalized cross-correlation, which ignores brightness differences between views. The depth where
-        the views agree best is kept, but only if the two best views match strongly and the other views confirm the
-        same depth. Sky, detected as smooth bright regions
-        connected to the top of the image, and texture-less patches are skipped, because they would match at any depth.
+        It runs once the video ends. An earlier version ran live, filling in the scene in the background while
+        tracking was still going. It looked good, but it was always matching against a map that was still moving, and
+        its quality was capped by what fit in real time. Once the video ends every camera pose is final, so this stage
+        can take its time and aim only for quality. It still shows its progress: the cloud grows keyframe by keyframe in
+        the viewer.
+      </P>
+      <Diagram>
+        <DensePipeline />
+      </Diagram>
+
+      <H3>Picking keyframes</H3>
+      <P>
+        Tracking makes a keyframe whenever the view has changed enough to matter for tracking, which is far more often
+        than matching needs: the Family video has about 780. Many of them see the scene from nearly the same spot and would
+        only add the same depths again. So keyframes closer together than 5% of their distance to the scene, and
+        turned less than 10° from each other, count as one spot, and only the one that tracked the most map points is
+        kept. That leaves about 180. Their frames are decoded from the video again at 960×540, straightened with the lens
+        distortion found by self-calibration, and kept in memory.
+      </P>
+
+      <H3>Choosing partner views</H3>
+      <P>
+        Every kept keyframe is matched against 8 partners. A good partner sees the same part of the scene from a useful
+        angle. Both come straight from the sparse map. For every map point two keyframes share, the angle between
+        their two viewing rays is measured. Between 3° and 40° the point counts fully. Below that the rays are nearly
+        parallel and the depth is imprecise. Above it the surface looks too different from the two sides to match.
+        Partners at a very different distance from the scene count less, since the same surface appears at a
+        different size. The 8 highest scores are the partners.
+      </P>
+
+      <H3>A depth and a normal for every pixel</H3>
+      <P>
+        The depth maps come from PatchMatch stereo. Each pixel&apos;s guess is not just a depth but a small plane: a
+        depth and a surface normal. The plane matters on slanted surfaces. Pavement seen at a low angle looks
+        stretched in the next keyframe, so a square patch around a pixel would not match a square patch there. A plane
+        says exactly how the patch is distorted, a homography, so it can be warped into each partner and compared
+        properly.
+      </P>
+      <Diagram>
+        <PlaneHomography />
+      </Diagram>
+      <P>
+        The comparison is normalized cross-correlation over an 11×11 patch, sampled at every second pixel. NCC ignores
+        brightness and contrast differences between views. Each sample is weighted by how similar its color is to the
+        center pixel, so a patch on the edge of the statue mostly ignores the bushes behind it. The cost of a plane is
+        the average over its 3 best-matching partners, so a point hidden behind something in a few partners isn&apos;t
+        punished for it.
       </P>
       <P>
-        Where the dense cloud has done its work, it replaces the sparse points inside the cell and removes points
-        floating in front of a measured surface. Dense points are stored relative to the keyframe they were measured in,
-        so they move with it when bundle adjustment corrects that keyframe. Quality rises over time: every cell is first
-        solved by a fast pass with few pixels, depths and views, and whenever nothing new is waiting, the weakest cells
-        are solved again one tier better, up to every pixel, 96 depths and 12 views.
+        Trying every depth and every normal for every pixel is far too slow. PatchMatch relies on one observation:
+        neighbouring pixels usually lie on the same surface. So every pixel starts with a random plane. Almost all are
+        wrong, but a few are close by luck, and a good plane can spread to its neighbours. The start is not entirely
+        random: map points from tracking are projected into the keyframe, and at those pixels their known depth is
+        tried as well.
+      </P>
+      <Grid
+        items={[
+          [denseColor, "keyframe"],
+          [denseSeeds, "map points that seed it"],
+        ]}
+      >
+        A keyframe of the Family video, undistorted, and the map points from tracking that land in it. Each is a
+        pixel whose depth is already known.
+      </Grid>
+      <P>
+        Then come rounds of propagation. The image is split like a checkerboard. First every light pixel updates, all
+        in parallel, then every dark one. A pixel tries the planes of 8 neighbours of the other color, extended to
+        its own position, plus one random plane and two small changes of its own, which shrink every round. It keeps
+        whichever matches best. Neighbours 5 pixels away, not just adjacent ones, let a good plane jump across a small
+        gap.
+      </P>
+      <Diagram>
+        <Propagation />
+      </Diagram>
+      <Grid
+        items={[
+          [denseRound0, "random start"],
+          [denseRound1, "after 1 round"],
+          [denseRound2, "after 2 rounds"],
+          [denseRound4, "after 4 rounds"],
+        ]}
+      >
+        PatchMatch at full size only, round by round. One round is enough for the statue and its base to appear out of
+        the noise, and by the fourth the surfaces have settled. The sky and the plain parts of the pavement have
+        nothing to match, so they stay noisy. The filter below removes them.
+      </Grid>
+
+      <H3>Coarse to fine</H3>
+      <P>
+        Large plain areas fill in slowly at full size, because a patch there sees almost no texture. So the search runs
+        on an image pyramid: first at 120×67, where a patch covers a large part of the scene, for 10 rounds, then each
+        level twice the size, starting from the level below, for 3 rounds each. The coarse levels find the overall
+        shape quickly and the finer ones add the detail.
+      </P>
+      <Grid
+        items={[
+          [denseLevel3, "120×67"],
+          [denseLevel2, "240×135"],
+          [denseLevel1, "480×270"],
+          [denseLevel0, "960×540"],
+        ]}
+      >
+        The same keyframe through the four levels of a real run. Every pixel is shown at its size, so the coarse levels
+        look blocky. Compare the pavement on the right with the rounds above: the coarse levels fill it in.
+      </Grid>
+
+      <H3>Keeping only what matched</H3>
+      <P>
+        Every pixel ends up with some plane, right or wrong, so the last step throws out the ones that can&apos;t be
+        trusted. A depth is kept only if its patch has texture and matches its best partners with an NCC of at least
+        0.65. Sky goes, and so does blank pavement and the darkest shadows. What is left is a depth map, with a normal
+        for every pixel as a by-product.
+      </P>
+      <Grid
+        items={[
+          [denseDepth, "depth, filtered"],
+          [denseNormals, "normals"],
+          [denseCost, "match quality"],
+          [denseColor, "keyframe"],
+        ]}
+      >
+        The final depth map, from near (red) to far (blue); black pixels have no depth. The normals are colored by
+        direction: the ground, facing up, is green, and surfaces facing the camera, like the front of the statue, are
+        purple. In the match quality map, white is a perfect match and black is no match. Edges and
+        texture match best, and sky and plain surfaces don&apos;t match at all.
+      </Grid>
+
+      <H3>On the GPU</H3>
+      <P>
+        Every pixel of a round is independent of the others of its color, which is exactly what a GPU is for. The same
+        steps run as a Vulkan compute shader, one submission to the GPU per round. A 960×540 depth map
+        against 8 partners takes about one second on an RTX 3060 laptop GPU. The CPU version remains the reference. A
+        test runs both on a synthetic slanted plane and checks their accuracy and that they agree. If there is no
+        usable GPU, or it fails, the CPU takes over.
+      </P>
+
+      <H3>Fusing the depth maps</H3>
+      <P>
+        A depth map on its own still has wrong depths that happened to match well. Two keyframes are unlikely to make
+        the same mistake, though. Every pixel of a depth map is turned into a 3D point and projected into each partner.
+        The partner&apos;s own depth at that pixel gives a second 3D point. If the two agree, both keyframes measured
+        the same surface.
+      </P>
+      <Diagram>
+        <FusionCheck />
+      </Diagram>
+      <P>
+        A pixel becomes a point only when at least 2 partners agree with it. The point is the average of all of them,
+        position and color. The pixels it came from are marked as used, so the same spot on the surface isn&apos;t
+        added again from another keyframe. Keyframes are fused in video order, each as soon as all its partners have
+        depth maps. That is why the cloud in the video grows along the camera path instead of appearing at the end.
+      </P>
+      <Grid
+        items={[
+          [kf02408Color, "keyframe"],
+          [kf02408Depth, "depth"],
+          [kf03822Color, "keyframe"],
+          [kf03822Depth, "depth"],
+        ]}
+      >
+        Two more keyframes from the same video. The figures in the foreground are clearly separated from the building
+        and trees behind them.
+      </Grid>
+      <P>
+        On the Family video, the dense stage turns those keyframes into 2.8 million points in about three
+        minutes on the GPU. The command-line tool can also write the keyframes and the dense cloud as a COLMAP
+        model, the format most Gaussian splatting trainers start from.
       </P>
 
       <H>10. Viewer and platforms</H>
@@ -463,7 +675,7 @@ export default function Videogammetry() {
         current camera and its path as they are built, with the tracked features on the video. It has its own software
         renderer, so only the window code is Windows-specific, and a start menu that exposes every parameter with an
         explanation. One key snaps the view to the moving camera, which is how the first video in this post was
-        recorded.
+        recorded. While the dense stage runs, the corner shows each new depth map instead of the video.
       </P>
       <P>
         The Android app links the same C++ core through JNI and reconstructs straight from the phone camera, showing only
@@ -473,8 +685,8 @@ export default function Videogammetry() {
 
       <H>Next</H>
       <P>
-        20 to 30 frames per second on a laptop CPU alone, local bundle adjustment and the triangulation searches on the
-        GPU, and a lot more footage.
+        Loop closure, so the map snaps back into place when the camera returns somewhere it has been. Gaussian splats
+        trained on the dense cloud. 20 to 30 frames per second on a laptop CPU alone, and a lot more footage.
       </P>
       <P>
         I grew up turning things into 3D with other people&apos;s tools. Now I have my own, and it runs on my phone, in
