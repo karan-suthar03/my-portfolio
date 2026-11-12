@@ -4,7 +4,7 @@ import motionAmplification from "./assets/projects/motion-amplification.gif";
 import soOptimizer from "./assets/projects/so-optimizer.png";
 import particlesPoster from "./assets/projects/particles-poster.jpg";
 import tileViewerPoster from "./assets/projects/tile-viewer-poster.jpg";
-import bombsquadShot from "./assets/posts/bombsquad/tutorial.jpg";
+import bombsquadShot from "./assets/posts/bombsquad/in-chrome.jpg";
 
 export const profile = {
   name: "Karan Suthar",
@@ -46,7 +46,7 @@ export const featured = [
     title: "BombSquad in the Browser",
     tagline: "A C++ game engine with embedded Python, ported to WebAssembly in a day.",
     image: bombsquadShot,
-    imageAlt: "BombSquad's tutorial level running in a Chrome tab",
+    imageAlt: "A BombSquad match running in Chrome on Windows",
     dark: true,
     tech: ["C++ · Emscripten · WebAssembly", "CPython 3.14 built for WASM with threads", "Go + pion WebRTC gateway", "Cloudflare R2 · Docker · Oracle Cloud"],
     stats: ["Playable in Chrome in one night", "~10 ms ping, browser and official app in one match", "First estimate: 1.5–3 months"],

@@ -1,4 +1,4 @@
-import tutorial from "../assets/posts/bombsquad/tutorial.jpg";
+import inChrome from "../assets/posts/bombsquad/in-chrome.jpg";
 import coopMenu from "../assets/posts/bombsquad/coop-menu.jpg";
 
 function H({ children }) {
@@ -28,33 +28,6 @@ function Figure({ src, alt, children }) {
   return (
     <figure className="flex flex-col gap-2 my-2">
       <img src={src} alt={alt} loading="lazy" decoding="async" className="w-full rounded-sm bg-neutral-900" />
-      <Caption>{children}</Caption>
-    </figure>
-  );
-}
-
-// A screenshot inside a simple browser window, so it is obvious the game is running in a tab.
-function BrowserFigure({ src, alt, url, tab, children }) {
-  return (
-    <figure className="flex flex-col gap-2 my-2">
-      <div className="rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 shadow-sm bg-neutral-100 dark:bg-neutral-800">
-        <div className="flex items-end gap-2 px-3 pt-2">
-          <div className="flex gap-1.5 pb-2.5" aria-hidden="true">
-            <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-600" />
-            <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-600" />
-            <span className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-600" />
-          </div>
-          <div className="ml-2 px-3 py-1.5 rounded-t-md bg-white dark:bg-neutral-900 text-xs text-neutral-600 dark:text-neutral-300 truncate max-w-[50%]">
-            {tab}
-          </div>
-        </div>
-        <div className="px-3 py-1.5 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700">
-          <div className="rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-mono text-neutral-500 dark:text-neutral-400 truncate">
-            {url}
-          </div>
-        </div>
-        <img src={src} alt={alt} loading="lazy" decoding="async" className="block w-full bg-neutral-900" />
-      </div>
       <Caption>{children}</Caption>
     </figure>
   );
@@ -147,15 +120,10 @@ export default function BombSquad() {
         <h1 className="text-3xl font-medium tracking-tight leading-tight">{meta.title}</h1>
       </header>
 
-      <BrowserFigure
-        src={tutorial}
-        alt="BombSquad's tutorial level running in a Chrome tab"
-        url="localhost:8000"
-        tab="BombSquad"
-      >
-        BombSquad&apos;s tutorial running in a Chrome tab: the original C++ engine and its Python game logic, compiled
-        to WebAssembly.
-      </BrowserFigure>
+      <Figure src={inChrome} alt="A Keep Away match of BombSquad running in Chrome on Windows, address bar showing localhost:8000">
+        BombSquad running in Chrome on Windows: the original C++ engine and its Python game logic, compiled to
+        WebAssembly and served from my laptop.
+      </Figure>
 
       <P>
         Two friends and I wanted to play BombSquad together. One of them has an iPhone, and BombSquad has no iOS
