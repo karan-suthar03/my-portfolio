@@ -137,6 +137,10 @@ export default function BombSquad() {
         about what the work actually involved and why it went so fast. The code is on{" "}
         <A href="https://github.com/karan-suthar03/ballistica">GitHub</A>.
       </P>
+      <P>
+        <A href="https://bombsquad.karansuthar.me">Play it in your browser</A>. The first load is about 180 MB, so use
+        Wi-Fi; after that it loads from cache.
+      </P>
 
       <H>What is in the way</H>
       <P>

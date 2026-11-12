@@ -51,6 +51,7 @@ export const featured = [
     tech: ["C++ · Emscripten · WebAssembly", "CPython 3.14 built for WASM with threads", "Go + pion WebRTC gateway", "Cloudflare R2 · Docker · Oracle Cloud"],
     stats: ["Playable in Chrome in one night", "~10 ms ping, browser and official app in one match", "First estimate: 1.5–3 months"],
     repo: "https://github.com/karan-suthar03/ballistica",
+    demo: "https://bombsquad.karansuthar.me",
     writeup: "/writing/bombsquad/",
     description:
       "An unofficial port of BombSquad's open-source Ballistica engine to the browser, so friends on iPhone could play. CPython is compiled to WebAssembly and linked into the engine, the engine loop runs on the browser's main thread with a 48-worker thread pool, a pure-Python stand-in replaces the closed-source online library, and a WebRTC-to-UDP gateway lets browser players join real game servers alongside the official app.",
