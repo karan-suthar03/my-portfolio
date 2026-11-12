@@ -11,6 +11,7 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
         videogammetry: resolve(import.meta.dirname, 'writing/videogammetry/index.html'),
+        bombsquad: resolve(import.meta.dirname, 'writing/bombsquad/index.html'),
       },
     },
   },

@@ -4,6 +4,7 @@ import motionAmplification from "./assets/projects/motion-amplification.gif";
 import soOptimizer from "./assets/projects/so-optimizer.png";
 import particlesPoster from "./assets/projects/particles-poster.jpg";
 import tileViewerPoster from "./assets/projects/tile-viewer-poster.jpg";
+import bombsquadShot from "./assets/posts/bombsquad/tutorial.jpg";
 
 export const profile = {
   name: "Karan Suthar",
@@ -40,6 +41,20 @@ export const experience = [
 ];
 
 export const featured = [
+  {
+    when: "Nov 2026",
+    title: "BombSquad in the Browser",
+    tagline: "A C++ game engine with embedded Python, ported to WebAssembly in a day.",
+    image: bombsquadShot,
+    imageAlt: "BombSquad's tutorial level running in a Chrome tab",
+    dark: true,
+    tech: ["C++ · Emscripten · WebAssembly", "CPython 3.14 built for WASM with threads", "Go + pion WebRTC gateway", "Cloudflare R2 · Docker · Oracle Cloud"],
+    stats: ["Playable in Chrome in one night", "~10 ms ping, browser and official app in one match", "First estimate: 1.5–3 months"],
+    repo: "https://github.com/karan-suthar03/ballistica",
+    writeup: "/writing/bombsquad/",
+    description:
+      "An unofficial port of BombSquad's open-source Ballistica engine to the browser, so friends on iPhone could play. CPython is compiled to WebAssembly and linked into the engine, the engine loop runs on the browser's main thread with a 48-worker thread pool, a pure-Python stand-in replaces the closed-source online library, and a WebRTC-to-UDP gateway lets browser players join real game servers alongside the official app.",
+  },
   {
     when: "Oct 2026",
     title: "Videogammetry",

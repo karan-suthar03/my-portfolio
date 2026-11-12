@@ -1,7 +1,13 @@
-import { StrictMode } from "react";
+import { StrictMode, Suspense, lazy } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import Videogammetry from "./posts/Videogammetry.jsx";
+// Each /writing/<slug>/ page shares this entry; pick the post from the URL.
+const posts = {
+  videogammetry: lazy(() => import("./posts/Videogammetry.jsx")),
+  bombsquad: lazy(() => import("./posts/BombSquad.jsx")),
+};
+const slug = window.location.pathname.split("/").filter(Boolean)[1];
+const Post = posts[slug] ?? posts.videogammetry;
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -10,7 +16,9 @@ createRoot(document.getElementById("root")).render(
         <a href="/" className="text-sm text-neutral-400 dark:text-neutral-500 hover:text-current w-fit">
           ← Karan Suthar
         </a>
-        <Videogammetry />
+        <Suspense fallback={null}>
+          <Post />
+        </Suspense>
         <footer className="pt-8 border-t border-neutral-100 dark:border-neutral-800 text-sm text-neutral-400 dark:text-neutral-500">
           <a href="/" className="hover:text-current">← Back to karansuthar.me</a>
         </footer>
